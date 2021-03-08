@@ -86,9 +86,11 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			c := len(pic)
 			i := 1
 			
-			for _, o := range pic {
+			img := pic[0:c-5]
+			
+			for _, o := range img {
 				reqImg, _ := client.Get(string(o[1]))
-				msgs := fmt.Sprintf(">>> ID: %s\nTitle: %s\nPage: %d/%d", cmd[1], title[0][1], i, c)
+				msgs := fmt.Sprintf(">>> ID: %s\nTitle: %s\nPage: %d/%d", cmd[1], title[0][1], i, c-5)
 				s.ChannelFileSendWithMessage( ChanID, msgs, "x.jpg", reqImg.Body)
 				i++
 			}
@@ -100,3 +102,12 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
