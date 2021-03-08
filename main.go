@@ -77,7 +77,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			data, _ := ioutil.ReadAll(resp.Body)
 			
 			title := regexp.MustCompile(`(?i)<meta property="og:title" content="(.*?)"`).FindAllSubmatch([]byte(data), -1)
-			pic := regexp.MustCompile(`(?i)height="288" data-src="(.*?)"`).FindAllSubmatch([]byte(data), -1)
+			pic := regexp.MustCompile(`(?i)data-src="(.*?)"`).FindAllSubmatch([]byte(data), -1)
 			
 			if len(pic) == 0 {
 				s.ChannelMessageSend(m.ChannelID, "> [!] ID Not Found")
