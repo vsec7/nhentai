@@ -81,18 +81,18 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			
 			if len(pic) == 0 {
 				s.ChannelMessageSend(m.ChannelID, "> [!] ID Not Found")
-			}
+			} else {
 			
-			c := len(pic)
-			i := 1
-			
-			img := pic[0:c-5]
-			
-			for _, o := range img {
-				reqImg, _ := client.Get(string(o[1]))
-				msgs := fmt.Sprintf(">>> ID: %s\nTitle: %s\nPage: %d/%d", cmd[1], title[0][1], i, c-5)
-				s.ChannelFileSendWithMessage( ChanID, msgs, "x.jpg", reqImg.Body)
-				i++
+				c := len(pic)
+				i := 1
+				img := pic[0:c-5]
+				
+				for _, o := range img {
+					reqImg, _ := client.Get(string(o[1]))
+					msgs := fmt.Sprintf(">>> ID: %s\nTitle: %s\nPage: %d/%d", cmd[1], title[0][1], i, c-5)
+					s.ChannelFileSendWithMessage( ChanID, msgs, "x.jpg", reqImg.Body)
+					i++
+				}
 			}
 			
 		} else {
@@ -102,12 +102,3 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
